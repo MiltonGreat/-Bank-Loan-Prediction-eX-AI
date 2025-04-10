@@ -1,1 +1,1 @@
-# -Bank-Loan-Prediction-eX-AI
+# Bank-Loan-Prediction-eX-AI
