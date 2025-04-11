@@ -20,22 +20,53 @@ The goal is to understand key approval drivers while assessing potential biases 
 - Property: Property_Area (Urban/Rural/Semiurban)
 - Target: Loan_Status (Y/N)
 
-### Key Steps
+### Workflow Outline
 
-1. Data Preprocessing
-Handled missing values:
-- Categorical: Filled with mode (e.g., Gender, Self_Employed).
-- Numerical: Filled with median/mode (e.g., LoanAmount, Credit_History).
+1. Data Loading & Preprocessing
+- Handle missing values (categorical: mode imputation; numerical: median/mode imputation).
+- Clean and convert Total_Income (remove currency symbols, convert to float).
+- Encode categorical variables (e.g., Loan_Status: Y=1, N=0).
+- Feature engineering: Create Income_per_dependent, EMI, Balance_Income, and log-transformed features.
 
-Feature engineering:
-- Created Income_per_dependent, EMI, Balance_Income.
-- Log-transformed skewed features (LoanAmount, Total_Income).
+2. Data Splitting & Scaling
+- Split data into train (80%) and test (20%) sets.
+- Scale features for Logistic Regression (StandardScaler).
+- Keep data unscaled for Random Forest (tree-based models don’t require scaling).
 
-2. Model Training & Evaluation
-- Logistic Regression	82.00% (Accuracy), 	84%	52% (Precision)
-- Random Forest	83.00% (Accuracy), 	79%	61% (Precision)
-- Tuned Random Forest	84.00% (Accuracy), 	89%	55% (Precision)
-- Best Model: Tuned Random Forest
+3. Model Training
+- Logistic Regression: Trained on scaled features.
+- Random Forest: Trained on raw features.
+
+4. Feature Importance Analysis
+- Extract and normalize Logistic Regression coefficients.
+- Use built-in Random Forest feature importances.
+- Visualize top features for both models (bar plots).
+
+5. Model Interpretability
+
+Partial Dependence Plots (PDPs):
+- Continuous features (LoanAmount_Log, Total_Income_Log).
+- Binary features (Credit_History, Education, Gender).
+
+Individual Conditional Expectation (ICE) Plots:
+- Analyze LoanAmount_Log impact on individual predictions.
+
+6. Fairness Evaluation
+
+Metrics Calculated:
+- Demographic Parity: Difference and ratio in approval rates between graduates/non-graduates.
+- Equal Opportunity: Difference and ratio in true positive rates.
+- Visualization: Bar plots comparing fairness metrics for both models.
+
+7. Education & Income Impact Analysis
+
+Plot predicted approval probabilities vs. Total_Income for:
+- Graduates (Education=1).
+- Non-graduates (Education=0).
+
+8. Results & Recommendations
+- Compare model performance, interpretability, and fairness.
+- Suggest mitigation strategies for bias (e.g., threshold adjustment).
 
 ### Key Takeaways
 
