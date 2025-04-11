@@ -43,8 +43,7 @@ The goal is to understand key approval drivers while assessing potential biases 
 - Visualize top features for both models (bar plots).
 
 5. Model Interpretability
-
-Partial Dependence Plots (PDPs):
+- Partial Dependence Plots (PDPs):
 - Continuous features (LoanAmount_Log, Total_Income_Log).
 - Binary features (Credit_History, Education, Gender).
 
@@ -59,8 +58,7 @@ Metrics Calculated:
 - Visualization: Bar plots comparing fairness metrics for both models.
 
 7. Education & Income Impact Analysis
-
-Plot predicted approval probabilities vs. Total_Income for:
+- Plot predicted approval probabilities vs. Total_Income for:
 - Graduates (Education=1).
 - Non-graduates (Education=0).
 
